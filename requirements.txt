@@ -1,0 +1,15 @@
+python-binance
+matplotlib
+dateparser
+pytz
+binance
+pandas
+datetime
+timedelta
+numpy
+keras
+sklearn
+dateparser
+pytz
+binance
+tensorflow

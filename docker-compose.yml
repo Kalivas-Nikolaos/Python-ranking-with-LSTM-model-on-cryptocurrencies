@@ -1,0 +1,12 @@
+version: "3"
+services:
+  webapp:
+    build: .
+    volumes:
+        - .:/app
+    working_dir: /app
+    # ports:
+      # - 4200:4200
+    command: python lstm_model.py
+    
+
