@@ -69,6 +69,8 @@ with pd.option_context('display.max_rows', None, 'display.max_columns', None):  
 
 print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
+#From here on down, we represent 3 different API calls that they provide us intersting informations of our CryptoCurrencys.
+
 #Nomics Api, Description call of the Crypto Coins that we valued before.
 def information_of_cryptos(total_tbl):
   k='nothing'
@@ -98,6 +100,7 @@ information_of_cryptos(total_tbl)
 
 print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
+#In these two Api calls we learn which of our Cryptos are in the category of lending Cryptos.
 def lending_cryptos():
     url = "https://data-api.defipulse.com/api/v1/defipulse/api/GetLendingTokens"
     headers = {'X-MBX-APIKEY' : 'c84855bdf075c2bceae10928ae82e19ffb4a92153a9972bcea85a65ef173'}
@@ -121,6 +124,7 @@ lending_table = pd.DataFrame(np.intersect1d(df1,df2))
 lending_table = lending_table.rename(columns={0: "Lending Coin"})
 print('\nFrom the Coins that we Ranked before, these are the Lending coins ')
 print(lending_table)
+
 
 def DeFi_Pulse_lending_Projects():
     url = "https://data-api.defipulse.com/api/v1/defipulse/api/GetLendingProjects"
