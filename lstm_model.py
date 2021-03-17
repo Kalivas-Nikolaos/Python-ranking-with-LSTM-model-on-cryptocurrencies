@@ -155,13 +155,6 @@ float_maker(coinTble)
 
 #Create a new dataframe with only the 'price_high column'
 data = coinTble.filter(['price_high'])
-print(data)
-#np.log(data.price_high) - np.log(data.price_high.shift(1)) is equivalent to np.log(df.price / df.price.shift(1)) (one log operation) 
-#data = np.log(data.price_high) - np.log(data.price_high.shift(1))
-#data = pd.DataFrame(data)
-#data = data.dropna()
-#data.info()
-#print('\n',data)
 #Convert the dataframe to a numpy array
 dataset = data.values
 #Get the number of rows to train the model(we use 80%)
@@ -238,20 +231,21 @@ MSE = np.square(np.subtract(y_test,predictions)).mean()
 rmse=np.sqrt(np.mean(((predictions - y_test)**2)))
 print('\nRMSE = ', rmse)
 
+#prepare the results as an output of csv files
 train = data[:training_data_len]
 valid = data[training_data_len:]
 Date = coinTble['time']
 Date = Date[training_data_len:]
+#Transform to pandas tables and then to csv files
 Prediction_table = pd.DataFrame(predictions)
 Prediction_table.columns = ['Predictions']
 Prediction_table["Predictions"] = Prediction_table["Predictions"].astype(int)
-print(Prediction_table.info())
 Date_table = pd.DataFrame(Date)
 Valid_table = pd.DataFrame(valid)
 Valid_table["price_high"] = Valid_table["price_high"].astype(int)
 
 
-#Save our Predicted_values and their DateTime in a seperate csv file
+#Save our Predicted_values,Valid_values and their DateTime in a seperate csv file
 Prediction_table.to_csv("Predicted_output.csv", index=False, header=True)
 Date_table.to_csv("Date_output.csv", index=False, header=True)
 Valid_table.to_csv("Valid_output.csv", index=False, header=True)
